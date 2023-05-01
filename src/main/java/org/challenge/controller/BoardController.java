@@ -144,8 +144,9 @@ public class BoardController {
     }
 
     /**
-     * ex: http://localhost:3000/api/v1/board?boardName=board1
+     * ex: http://localhost:3000/api/v1/board/list?boardId=board1
      * @param boardName name of the board
+     * @param organizationId name of the organization
      * @return
      * <201>Board created: board id<201/>
      * <400>Bad Request<400/>
@@ -159,10 +160,10 @@ public class BoardController {
         @ApiResponse(responseCode = "500", description = "Not able to create board")
     })
     @PostMapping(value = "/board", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> createBoard(@RequestParam(name = "boardName") String boardName) {
+    public ResponseEntity<String> createBoard(@RequestParam(name = "boardName") String boardName,@RequestParam(name = "organizationId") String organizationId) {
         String boardId = null;
         try {
-            boardId = boardService.createBoard(boardName);
+            boardId = boardService.createBoard(boardName,organizationId);
 
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Not able to create board");
@@ -228,6 +229,28 @@ public class BoardController {
 
         }
         return new ResponseEntity<>("idLabel: " + idLabel, HttpStatus.CREATED);
+    }
+
+    /**
+     * ex: http://localhost:3000/api/v1/organization?organizationName=org1
+     * @param organizationName name of the organization
+     * @return
+     * <201>organization id<201/>
+     * <400>Bad Request<400/>
+     * <500>Internal Error <500/>
+     * @throws RuntimeException
+     */
+    @PostMapping(value = "/organization",  produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> createOrganization(@RequestParam(name = "organizationName") String organizationName) {
+        String orgId;
+        try {
+            orgId = boardService.createOrganization(organizationName);
+
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Not able to create organization");
+
+        }
+        return new ResponseEntity<>("organization id: " + orgId, HttpStatus.CREATED);
     }
 
 }

@@ -95,10 +95,10 @@ public class BoardServiceTest {
 
     @Test
     public void testCreateBoard() {
-        when(client.createBoard("board name test")).thenReturn("board id test");
-        boardService.createBoard("board name test");
+        when(client.createBoard("board name test","organization id")).thenReturn("board id test");
+        boardService.createBoard("board name test","organization id");
 
-        verify(client, Mockito.times(1)).createBoard("board name test");
+        verify(client, Mockito.times(1)).createBoard("board name test","organization id");
     }
 
     @Test

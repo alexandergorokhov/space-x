@@ -9,7 +9,6 @@ import org.challenge.domain.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -38,16 +37,21 @@ public class BoardService {
         var members = apiWebClient.getMembers(boardId);
         task.setAssignee(members.get(new Random().nextInt(members.size())));
         if (BoardElement.labels.get(task.getLabel()) == null) {
-            HashMap<String, Label> labels = apiWebClient.getLabels(boardId);
+            var labels = apiWebClient.getLabels(boardId);
             BoardElement.labels = labels;
         }
         Label label = BoardElement.labels.get(task.getCategory());
         apiWebClient.createTask(task, listId, label.getId());
     }
 
-    public String createBoard(String boardName) {
-        return apiWebClient.createBoard(boardName);
+    public String createBoard(String boardName, String organizationId) {
+        return apiWebClient.createBoard(boardName,organizationId);
     }
+
+    public String createOrganization(String organizationName) {
+        return apiWebClient.createOrganization(organizationName);
+    }
+
 
     public String createList(String listName, String boardId) {
         return apiWebClient.createList(listName, boardId);

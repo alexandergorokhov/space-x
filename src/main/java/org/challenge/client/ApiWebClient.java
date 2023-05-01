@@ -105,12 +105,13 @@ public class ApiWebClient {
         logger.info("Task created");
     }
 
-    public String createBoard(String board) {
+    public String createBoard(String board,String organizationId){
         logger.info("Creating board");
 
         ResponseEntity result = client.post().uri(uriBuilder -> uriBuilder
                 .path("/boards")
                 .queryParam("name", board)
+                .queryParam("idOrganization", organizationId)
                 .queryParam("key", API_KEY)
                 .queryParam("token", TOKEN)
                 .build())
@@ -206,5 +207,25 @@ public class ApiWebClient {
         }
         logger.info("Label created");
         return jsonParser.parseLabels(result.getBody().toString());
+    }
+
+    public String createOrganization(String organizationName) {
+        logger.info("Creating organization");
+
+        ResponseEntity result = client.post().uri(uriBuilder -> uriBuilder
+                .path("/organizations")
+                .queryParam("displayName", organizationName)
+                .queryParam("key", API_KEY)
+                .queryParam("token", TOKEN)
+                .build())
+            .retrieve()
+            .toEntity(String.class)
+            .block();
+        if (result.getStatusCode() != HttpStatus.OK) {
+            logger.error("Error creating label");
+            throw new RuntimeException("Error creating label");
+        }
+        logger.info("Label created");
+        return jsonParser.parseField(result.getBody().toString(),"id");
     }
 }

@@ -1,8 +1,6 @@
 package api;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.challenge.client.JsonParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -29,17 +29,19 @@ The application exposes 6 endpoints, you can check them via swagger: http://loca
 ## 1
 Generate api token and key from https://trello.com/app-key
 ## 2
-Create a board sample :
-http://localhost:3000/api/v1/board/?boardName=Alex
+Create and organization: http://localhost:3000/api/v1/organization/?organizationName=Sample
 ## 3
-Create a list on a board sample :
-http://localhost:3000/api/v1/list/?boardId=644d8cfeedf76c99f8242d71&listName=space2
+Create a board sample :
+http://localhost:3000/api/v1/board?organizationId=644fef51683e38a41b3d7c5&boardName=BoardSample
 ## 4
-Create a label on a list sample :
-http://localhost:3000/api/v1/label/?boardId=644d8cfeedf76c99f8242d71&labelName=Bug&labelColor=red
+Create a list on a board sample :
+http://localhost:3000/api/v1/list/?boardId=6448cfeedf76c99f8242d71&listName=space2
 ## 5
+Create a label on a list sample :
+http://localhost:3000/api/v1/label/?boardId=644dcfeedf76c99f8242d71&labelName=Bug&labelColor=red
+## 6
 Create a issue on a list sample :
-http://localhost:3000/api/v1/board/issue?listId=644d8dcf7cb585a3d527d837
+http://localhost:3000/api/v1/board/issue?listId=64d8dcf7cb585a3d527d837
 {
 "type":"issue",
 "description":"Pilots need to know the water level.",
@@ -48,7 +50,7 @@ http://localhost:3000/api/v1/board/issue?listId=644d8dcf7cb585a3d527d837
 or
 
 Create a bug on a list sample :
-http://localhost:3000/api/v1/board/bug?listId=644d8dcf7cb585a3d527d837&boardId=644d8cfeedf76c99f8242d71
+http://localhost:3000/api/v1/board/bug?listId=644d8dc7cb585a3d527d837&boardId=644d8cfedf76c99f8242d71
 {
 "type":"bug",
 "description":"The cleanning mechanism is now working."
@@ -56,7 +58,7 @@ http://localhost:3000/api/v1/board/bug?listId=644d8dcf7cb585a3d527d837&boardId=6
 or
 
 Create a task on a list sample :
-http://localhost:3000/api/v1/board/task?listId=644d8dcf7cb585a3d527d837&boardId=644d8cfeedf76c99f8242d71
+http://localhost:3000/api/v1/board/task?listId=644d8df7cb585a3d527d837&boardId=644d8ceedf76c99f8242d71
 {
 "type":"task",
 "title":"Clean the suit",
