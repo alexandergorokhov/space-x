@@ -13,11 +13,14 @@ trello.api.key
 trello.api.token
 # How to use
 The application will run on port 3000, or can be changed in application.properties file.
-The application exposes 6 endpoints, you can check them via swagger: http://localhost:3000/swagger-ui/index.html
+The application exposes 7 endpoints, you can check them via swagger: http://localhost:3000/swagger-ui/index.html
+
+/organization - POST - creates a new organization
 
 /board - POST - creates a new board
 
 /list - POST - creates a new list on a board
+
 /label - POST - creates a new label on a list
 
 /board/task - POST - creates a new task on a list
